@@ -6,11 +6,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserRepository {
+public class UserJdbcRepository {
 
   private JdbcTemplate jdbcTemplate;
 
-  public UserRepository(JdbcTemplate jdbcTemplate) {
+  public UserJdbcRepository(JdbcTemplate jdbcTemplate) {
     this.jdbcTemplate = jdbcTemplate;
   }
 
