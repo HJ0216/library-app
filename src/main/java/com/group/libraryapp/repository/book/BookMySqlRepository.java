@@ -9,6 +9,6 @@ public class BookMySqlRepository implements BookRepository {
 
   @Override
   public void saveBook() {
-    System.out.println("BookMySqlRepository.saveBook");
+//    System.out.println("BookMySqlRepository.saveBook");
   }
 }
