@@ -1,12 +1,18 @@
 package com.group.libraryapp.domain.book;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Book {
 
   @Id
@@ -16,20 +22,10 @@ public class Book {
   @Column(nullable = false)
   private String name;
 
-  protected Book() {}
-
   public Book(String name) {
     if (name == null || name.isEmpty()) {
       throw new NullPointerException(String.format("잘못된 name(%s)이 들어왔습니다.", name));
     }
     this.name = name;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public String getName() {
-    return name;
   }
 }

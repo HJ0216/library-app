@@ -5,17 +5,21 @@ import com.group.libraryapp.dto.user.request.UserUpdateRequest;
 import com.group.libraryapp.dto.user.response.UserResponse;
 import com.group.libraryapp.repository.user.UserJdbcRepository;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @Service
+@RequiredArgsConstructor
 public class UserServiceV1 {
 
   private final UserJdbcRepository userJdbcRepository;
 
-  public UserServiceV1(UserJdbcRepository userJdbcRepository) {
-    this.userJdbcRepository = userJdbcRepository;
+//  public UserServiceV1(UserJdbcRepository userJdbcRepository) {
+//    this.userJdbcRepository = userJdbcRepository;
 //    this.userRepository = new UserJdbcRepository(jdbcTemplate);
-  }
+//  }
 
   public void saveUser(UserCreateRequest request) {
     userJdbcRepository.saveUser(request.getName(), request.getAge());

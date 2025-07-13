@@ -6,6 +6,7 @@ import com.group.libraryapp.dto.user.response.UserResponse;
 import com.group.libraryapp.service.user.UserServiceV1;
 import com.group.libraryapp.service.user.UserServiceV2;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,16 +16,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 public class UserController {
 
   private final UserServiceV2 userService;
 //  private final JdbcTemplate jdbcTemplate;
 
-  public UserController(UserServiceV2 userService) {
-    this.userService = userService;
+//  public UserController(UserServiceV2 userService) {
+//    this.userService = userService;
 //    this.jdbcTemplate = jdbcTemplate;
 //    userService = new UserServiceV1(jdbcTemplate);
-  }
+//  }
 
   //  private final List<User> users = new ArrayList<>();
 

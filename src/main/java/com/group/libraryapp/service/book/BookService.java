@@ -9,11 +9,13 @@ import com.group.libraryapp.dto.book.request.BookReturnRequest;
 import com.group.libraryapp.dto.book.request.BookCreateRequest;
 import com.group.libraryapp.domain.book.BookRepository;
 import com.group.libraryapp.dto.book.request.BookLoanRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Service
+@RequiredArgsConstructor
 public class BookService {
 
   private final BookRepository bookRepository;
@@ -21,17 +23,17 @@ public class BookService {
   private final UserRepository userRepository;
 
   // 빈 주입 방식: 생성자(권장)
-  public BookService(BookRepository bookRepository,
-      UserLoanHistoryRepository userLoanHistoryRepository, UserRepository userRepository) {
-    this.bookRepository = bookRepository;
+//  public BookService(BookRepository bookRepository,
+//      UserLoanHistoryRepository userLoanHistoryRepository, UserRepository userRepository) {
+//    this.bookRepository = bookRepository;
     // 어떤 bookRepository를 쓸꺼냐,
     // @Primary를 쓰거나
     // 매개변수에 @Qualifier("bookMemoryRepository")로 선택해서 가져올 수 있음
     // 또는 @Qualifier("main")으로 선언할 경우, @Qualifier("main")으로 선언한 Repository가 있으면 해당 repo 부름
     // 우선순위 @Qualifier > @Primary
-    this.userLoanHistoryRepository = userLoanHistoryRepository;
-    this.userRepository = userRepository;
-  }
+//    this.userLoanHistoryRepository = userLoanHistoryRepository;
+//    this.userRepository = userRepository;
+//  }
 
   // 빈 주입 방식2: setter + @Autowired -> 누군가 Setter를 사용할 수 있으므로 위험
   // 빈 주입 방식3: 필드 + @Autowired -> 테스트 코드 작성 어려움

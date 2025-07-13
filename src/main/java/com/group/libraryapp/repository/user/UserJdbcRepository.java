@@ -2,17 +2,19 @@ package com.group.libraryapp.repository.user;
 
 import com.group.libraryapp.dto.user.response.UserResponse;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@RequiredArgsConstructor
 public class UserJdbcRepository {
 
   private JdbcTemplate jdbcTemplate;
 
-  public UserJdbcRepository(JdbcTemplate jdbcTemplate) {
-    this.jdbcTemplate = jdbcTemplate;
-  }
+//  public UserJdbcRepository(JdbcTemplate jdbcTemplate) {
+//    this.jdbcTemplate = jdbcTemplate;
+//  }
 
   public void saveUser(String name, int age) {
     String sql = "insert into user (name, age) values (?, ?)";

@@ -1,13 +1,18 @@
 package com.group.libraryapp.domain.user;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class UserLoanHistory {
 
   @Id
@@ -24,26 +29,10 @@ public class UserLoanHistory {
   @Column(nullable = false)
   private boolean isReturn; // tinyint(1)
 
-  protected UserLoanHistory() {}
-
   public UserLoanHistory(User user, String bookName) {
     this.user = user;
     this.bookName = bookName;
     this.isReturn = false;
-  }
-
-
-
-  public Long getId() {
-    return id;
-  }
-
-  public User getUser() {
-    return user;
-  }
-
-  public String getBookName() {
-    return bookName;
   }
 
   public boolean isReturn() {
