@@ -1,14 +1,13 @@
 package com.group.libraryapp.service.book;
 
 import com.group.libraryapp.domain.book.Book;
+import com.group.libraryapp.domain.book.BookRepository;
 import com.group.libraryapp.domain.user.User;
-import com.group.libraryapp.domain.user.UserLoanHistory;
 import com.group.libraryapp.domain.user.UserLoanHistoryRepository;
 import com.group.libraryapp.domain.user.UserRepository;
-import com.group.libraryapp.dto.book.request.BookReturnRequest;
-import com.group.libraryapp.dto.book.request.BookCreateRequest;
-import com.group.libraryapp.domain.book.BookRepository;
-import com.group.libraryapp.dto.book.request.BookLoanRequest;
+import com.group.libraryapp.dto.book.request.BookCreateRequestRecord;
+import com.group.libraryapp.dto.book.request.BookLoanRequestRecord;
+import com.group.libraryapp.dto.book.request.BookReturnRequestRecord;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,36 +37,36 @@ public class BookService {
   // 빈 주입 방식2: setter + @Autowired -> 누군가 Setter를 사용할 수 있으므로 위험
   // 빈 주입 방식3: 필드 + @Autowired -> 테스트 코드 작성 어려움
 
-  public void saveBook(BookCreateRequest request) {
-    bookRepository.save(new Book(request.getName()));
+  public void saveBook(BookCreateRequestRecord request) {
+    bookRepository.save(new Book(request.name()));
   }
 
-  public void loanBook(BookLoanRequest request) {
+  public void loanBook(BookLoanRequestRecord request) {
     // 1. 책 정보
-    bookRepository.findBookByName(request.getBookName())
+    bookRepository.findBookByName(request.bookName())
         .orElseThrow(IllegalArgumentException::new);
 
     // 2. 대출 확인
     // 3. 대출 중 - 예외 처리
-    if(userLoanHistoryRepository.existsByBookNameAndIsReturn(request.getBookName(), false)){
+    if(userLoanHistoryRepository.existsByBookNameAndIsReturn(request.bookName(), false)){
       throw new IllegalArgumentException("Book already loaned!");
     }
 
     // 4. 유저 정보
     // 5. 대출 데이터 추가
-    User user = userRepository.findByName(request.getUserName())
+    User user = userRepository.findByName(request.userName())
                               .orElseThrow(IllegalArgumentException::new);
 
-    user.loanBook(request.getBookName());
+    user.loanBook(request.bookName());
 //    userLoanHistoryRepository.save(new UserLoanHistory(user, request.getBookName()));
   }
 
-  public void returnBook(BookReturnRequest request) {
+  public void returnBook(BookReturnRequestRecord request) {
     // 1. 유저 정보
-    User user = userRepository.findByName(request.getUserName())
+    User user = userRepository.findByName(request.userName())
                               .orElseThrow(IllegalArgumentException::new);
 
-    user.returnBook(request.getBookName());
+    user.returnBook(request.bookName());
     // 2. 대출 기록
 //    UserLoanHistory history = userLoanHistoryRepository.findByUserIdAndBookName(
 //        user.getId(), request.getBookName()).orElseThrow(IllegalArgumentException::new);

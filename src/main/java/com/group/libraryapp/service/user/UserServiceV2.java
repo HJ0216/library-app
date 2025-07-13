@@ -2,8 +2,8 @@ package com.group.libraryapp.service.user;
 
 import com.group.libraryapp.domain.user.User;
 import com.group.libraryapp.domain.user.UserRepository;
-import com.group.libraryapp.dto.user.request.UserCreateRequest;
-import com.group.libraryapp.dto.user.request.UserUpdateRequest;
+import com.group.libraryapp.dto.user.request.UserCreateRequestRecord;
+import com.group.libraryapp.dto.user.request.UserUpdateRequestRecord;
 import com.group.libraryapp.dto.user.response.UserResponse;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,8 +22,8 @@ public class UserServiceV2 {
 //    this.userRepository = userRepository;
 //  }
 
-  public void saveUser(UserCreateRequest request) {
-    userRepository.save(new User(request.getName(), request.getAge()));
+  public void saveUser(UserCreateRequestRecord request) {
+    userRepository.save(new User(request.name(), request.age()));
   }
 
   @Transactional(readOnly = true)
@@ -34,11 +34,11 @@ public class UserServiceV2 {
                          .collect(Collectors.toList());
   }
 
-  public void updateUser(UserUpdateRequest request) {
-    User user = userRepository.findById(request.getId())
+  public void updateUser(UserUpdateRequestRecord request) {
+    User user = userRepository.findById(request.id())
                               .orElseThrow(IllegalArgumentException::new);
 
-    user.updateName(request.getName());
+    user.updateName(request.name());
 //    userRepository.save(user); // 영속성 컨텍스트 안에서 불러와진 entity는 명시적으로 save하지 않아도 변경을 감지해 자동 저장
   }
 

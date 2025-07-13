@@ -1,6 +1,5 @@
 package com.group.libraryapp.domain.user;
 
-import com.group.libraryapp.domain.book.Book;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,9 +1,8 @@
 package com.group.libraryapp.controller.user;
 
-import com.group.libraryapp.dto.user.request.UserCreateRequest;
-import com.group.libraryapp.dto.user.request.UserUpdateRequest;
+import com.group.libraryapp.dto.user.request.UserCreateRequestRecord;
+import com.group.libraryapp.dto.user.request.UserUpdateRequestRecord;
 import com.group.libraryapp.dto.user.response.UserResponse;
-import com.group.libraryapp.service.user.UserServiceV1;
 import com.group.libraryapp.service.user.UserServiceV2;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +30,7 @@ public class UserController {
   //  private final List<User> users = new ArrayList<>();
 
   @PostMapping("/user") // POST /user
-  public void saveUser(@RequestBody UserCreateRequest request) {
+  public void saveUser(@RequestBody UserCreateRequestRecord request) {
     userService.saveUser(request);
 //    users.add(new User(request.getName(), request.getAge()));
   }
@@ -50,7 +49,7 @@ public class UserController {
   }
 
   @PutMapping("/user")
-  public void updateUser(@RequestBody UserUpdateRequest request) {
+  public void updateUser(@RequestBody UserUpdateRequestRecord request) {
     userService.updateUser(request);
   }
 

@@ -1,7 +1,7 @@
 package com.group.libraryapp.service.user;
 
-import com.group.libraryapp.dto.user.request.UserCreateRequest;
-import com.group.libraryapp.dto.user.request.UserUpdateRequest;
+import com.group.libraryapp.dto.user.request.UserCreateRequestRecord;
+import com.group.libraryapp.dto.user.request.UserUpdateRequestRecord;
 import com.group.libraryapp.dto.user.response.UserResponse;
 import com.group.libraryapp.repository.user.UserJdbcRepository;
 import java.util.List;
@@ -21,22 +21,22 @@ public class UserServiceV1 {
 //    this.userRepository = new UserJdbcRepository(jdbcTemplate);
 //  }
 
-  public void saveUser(UserCreateRequest request) {
-    userJdbcRepository.saveUser(request.getName(), request.getAge());
+  public void saveUser(UserCreateRequestRecord request) {
+    userJdbcRepository.saveUser(request.name(), request.age());
   }
 
   public List<UserResponse> getUsers() {
     return userJdbcRepository.getUsers();
   }
 
-  public void updateUser(UserUpdateRequest request) {
-    boolean isUserNotExist = userJdbcRepository.isUserNotExits(request.getId());
+  public void updateUser(UserUpdateRequestRecord request) {
+    boolean isUserNotExist = userJdbcRepository.isUserNotExits(request.id());
 
     if(isUserNotExist) {
       throw new IllegalArgumentException();
     }
 
-    userJdbcRepository.updateUserName(request.getName(), request.getId());
+    userJdbcRepository.updateUserName(request.name(), request.id());
   }
 
   public void deleteUser(String name) {
