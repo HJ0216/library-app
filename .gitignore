@@ -35,8 +35,8 @@ out/
 *.log
 
 # 패키징된 라이브러리/실행 파일
-*.jar
-*.war
+# *.jar
+# *.war
 
 # JVM 크래시 로그
 hs_err_pid*
